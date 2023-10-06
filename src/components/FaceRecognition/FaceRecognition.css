@@ -1,0 +1,29 @@
+img {
+  margin-top: 32px;
+  margin-bottom: 100px;
+  border-radius: 12px;
+}
+.bounding-box {
+  position: absolute;
+  box-shadow: 0 0 0 3px #b6e63d inset;
+  cursor: pointer;
+}
+.center.img-box {
+  position: relative;
+}
+
+@media only screen and (min-width: 769px) {
+  .img-box {
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 820px) {
+  .img-box {
+    max-width: 70%;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .img-box {
+    max-width: 40%;
+  }
+}

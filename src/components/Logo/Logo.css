@@ -1,0 +1,16 @@
+.tilt {
+  border-radius: 12px;
+  background: linear-gradient(89deg, #e4efe7 0%, #97a9d1 100%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  max-width: 140px;
+  text-align: center;
+  margin: 0 auto;
+}
+.tilt img {
+  margin: 40px;
+}
+.logo h1 {
+  text-align: center;
+  color: #486197;
+  font-weight: 400;
+}

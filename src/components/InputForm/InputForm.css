@@ -1,0 +1,65 @@
+.input-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.input-box {
+  margin-left: auto;
+  margin-right: auto;
+}
+.searchline {
+  max-width: 90%;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  padding: 28px;
+  margin-top: 32px;
+  border-radius: 12px;
+  background-color: #b4c4d9;
+  opacity: 0.8;
+  background-image: repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      #b4c4d9 10px
+    ),
+    repeating-linear-gradient(#ebeeef55, #ebeeef);
+}
+button {
+  margin-left: 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(42, 40, 40, 0.3);
+  background: linear-gradient(90deg, #e2ede6 0%, #a3b4d4 100%);
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  padding: 8px 24px;
+  transition: all ease-in-out 300ms;
+  cursor: pointer;
+}
+
+.input-descr {
+  color: #486197;
+}
+.input-box p {
+  text-align: center;
+  margin-top: 24px;
+}
+/* @media only screen and (max-width: 500px) {
+  #btnDetect {
+    display: none;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .searchline {
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 820px) {
+  .searchline {
+    max-width: 70%;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .searchline {
+    max-width: 40%;
+  }
+} */
