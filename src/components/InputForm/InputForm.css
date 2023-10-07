@@ -43,23 +43,9 @@ button {
   text-align: center;
   margin-top: 24px;
 }
-/* @media only screen and (max-width: 500px) {
-  #btnDetect {
-    display: none;
+
+@media only screen and (max-width: 500px) {
+  .input-form-container {
+    margin: 0px;
   }
 }
-@media only screen and (min-width: 769px) {
-  .searchline {
-    max-width: 50%;
-  }
-}
-@media only screen and (min-width: 820px) {
-  .searchline {
-    max-width: 70%;
-  }
-}
-@media only screen and (min-width: 1025px) {
-  .searchline {
-    max-width: 40%;
-  }
-} */

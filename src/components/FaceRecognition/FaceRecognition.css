@@ -1,15 +1,28 @@
-img {
-  margin-top: 32px;
-  margin-bottom: 100px;
+.center {
+  display: flex;
+  justify-content: center;
+}
+.ma {
+  margin: auto;
+}
+.img-box {
+  position: relative;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 60px;
+}
+.input-image-style {
+  display: block;
+  width: 100%;
+  height: auto;
   border-radius: 12px;
 }
 .bounding-box {
   position: absolute;
   box-shadow: 0 0 0 3px #b6e63d inset;
   cursor: pointer;
-}
-.center.img-box {
-  position: relative;
+  z-index: 1;
 }
 
 @media only screen and (min-width: 769px) {

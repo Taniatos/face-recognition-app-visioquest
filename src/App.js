@@ -3,8 +3,9 @@ import "./App.css";
 import ParticlesBg from "particles-bg";
 import LandingPage from "./components/LandingPage/LandingPage";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
-import Logo from "./components/Logo/Logo"; 
-import InputForm from "./components/InputForm/InputForm"; 
+import Logo from "./components/Logo/Logo";
+import InputForm from "./components/InputForm/InputForm";
+import { pat } from "./constants/apiKeys";
 
 function App() {
   const [input, setInput] = useState("");
@@ -34,17 +35,23 @@ function App() {
   };
 
   const onButtonSubmit = () => {
-    const API_KEY = "YOUR_CLARIFAI_API_KEY"; // Replace this with your actual API key
-    const MODEL_ID = "YOUR_MODEL_ID"; // Replace this with your actual model ID
+    const PAT = pat;
+    const USER_ID = "taniatos";
+    const APP_ID = "visio-quest-app";
+    const MODEL_ID = "face-detection";
 
     const requestOptions = {
       method: "POST",
       headers: {
         Accept: "application/json",
-        Authorization: "Key " + API_KEY,
+        Authorization: "Key " + PAT,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        user_app_id: {
+          user_id: USER_ID,
+          app_id: APP_ID,
+        },
         inputs: [
           {
             data: {
@@ -88,6 +95,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;
