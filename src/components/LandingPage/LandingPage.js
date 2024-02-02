@@ -1,33 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./LandingPage.css";
 
 const LandingPage = ({ onRouteChange }) => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const renderTitle = () => {
+    return windowWidth <= 540 ? (
+      <>
+        <span>Visio</span>
+        <br />
+        <span>Quest</span>
+      </>
+    ) : (
+      "VisioQuest"
+    );
+  };
+
   return (
-    <div className="container">
-      <div className="left-side">
-        <h2>Welcome to Face Recognition App</h2>
-        <h1>VisioQuest</h1>
-        <p>
-          VisioQuest is designed to simplify the process of detecting faces in
-          images.
-          <br />
-          Simply paste the image URL into the search field, and witness the
-          magic of our face recognition technology in action. Explore it now!
-        </p>
-          <button
-            onClick={() => onRouteChange("faceRecognition")}
-            className="btn-start"
-          >
-            START
-          </button>
+    <>
+      <div className="container">
+        <div className="landing-content">
+          <div className="content-box">
+            <h2 className="landing-h2">Welcome to Face Recognition App</h2>
+            <h1 className="landing-h1">{renderTitle()}</h1>
+            <button
+              onClick={() => onRouteChange("faceRecognition")}
+              className="btn-start"
+            >
+              START
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="right-side">
-        <img
-          src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/095/787/original/visioquestforapp3.png?1693857432"
-          alt="VisioQuest"
-        />
-      </div>
-    </div>
+    </>
   );
 };
 

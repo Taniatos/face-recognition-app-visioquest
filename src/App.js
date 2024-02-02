@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import ParticlesBg from "particles-bg";
+
 import LandingPage from "./components/LandingPage/LandingPage";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
 import Logo from "./components/Logo/Logo";
@@ -79,7 +79,7 @@ function App() {
 
   return (
     <div className="App">
-      <ParticlesBg type="cobweb" num={80} bg={true} />
+      
       {route === "landing" ? (
         <LandingPage onRouteChange={setRoute} />
       ) : (

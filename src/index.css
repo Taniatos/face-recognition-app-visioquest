@@ -5,7 +5,12 @@ body {
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(89deg, #e4efe7 0%, #97a9d1 100%);
+  background-color: aliceblue;
+  /* background: linear-gradient(
+    90deg,
+    rgba(22, 49, 60, 0.83) 0%,
+    rgba(23, 48, 101, 0.8) 93.99%
+  ); */
 }
 
 code {
