@@ -1,51 +1,130 @@
-.input-form-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#cover {
   position: relative;
+  top: 50%;
+  left: 0;
+  right: 0;
+  width: 550px;
+  padding: 35px;
+  margin: 0 auto;
+  background-color: #fbfbfb;
+  border-radius: 20px;
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+  transform: scale(0.6);
 }
 
-.input-box {
-  margin-left: auto;
-  margin-right: auto;
+.tb {
+  display: table;
+  width: 100%;
 }
-.searchline {
-  max-width: 90%;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
-  padding: 28px;
-  margin-top: 32px;
-  border-radius: 12px;
-  background-color: #b4c4d9;
-  opacity: 0.8;
-  background-image: repeating-radial-gradient(
-      circle at 0 0,
-      transparent 0,
-      #b4c4d9 10px
-    ),
-    repeating-linear-gradient(#ebeeef55, #ebeeef);
+
+.td {
+  display: table-cell;
+  vertical-align: middle;
 }
-button {
-  margin-left: 12px;
-  border-radius: 4px;
-  border: 1px solid rgba(42, 40, 40, 0.3);
-  background: linear-gradient(90deg, #e2ede6 0%, #a3b4d4 100%);
-  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(20px);
-  padding: 8px 24px;
-  transition: all ease-in-out 300ms;
+
+input[type="text"] {
+  width: 92%; /* Adjusted to take up 92% of the space */
+  height: 48px; /* Reduced height to 50% */
+  font-size: 30px; /* Adjusted font size for smaller input field */
+  line-height: 1;
+  color: #181b1c;
+  font-family: Nunito;
+  background-color: transparent;
+  border: none;
+}
+
+input[type="text"]::placeholder {
+  color: #181b1c;
+}
+
+#s-cover {
+  width: 1px;
+  padding-left: 35px;
+}
+
+.input-button{
+  position: relative;
+  display: block;
+  width: 46px; /* Reduced width */
+  height: 48px; /* Reduced height */
   cursor: pointer;
+  color: #181b1c;
+
+  background-color: transparent;
+  border: none;
 }
 
-.input-descr {
-  color: #486197;
-}
-.input-box p {
-  text-align: center;
-  margin-top: 24px;
+#s-circle {
+  position: relative;
+  top: -4px; /* Adjusted for smaller button */
+  left: 0;
+  width: 21px; /* Reduced width */
+  height: 21px; /* Reduced height */
+  margin-top: 0;
+  border-width: 7.5px; /* Reduced border width */
+  border: 7.5px solid #181b1c;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: 0.5s ease all;
 }
 
-@media only screen and (max-width: 500px) {
-  .input-form-container {
-    margin: 0px;
-  }
+.input-button span {
+  position: absolute;
+  top: 34px; /* Adjusted for smaller button */
+  left: 21px; /* Adjusted for smaller button */
+  display: block;
+  width: 22.5px; /* Reduced width */
+  height: 7.5px; /* Reduced height */
+  background-color: transparent;
+  border-radius: 5px; /* Adjusted for smaller button */
+  transform: rotateZ(52deg);
+  transition: 0.5s ease all;
+}
+
+.input-button span:before,
+.input-button span:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 22.5px;
+  height: 8px; 
+  background-color: #181b1c;
+  border-radius: 4px; /* Adjusted for smaller button */
+  transform: rotateZ(0);
+  transition: 0.5s ease all;
+}
+
+#s-cover:hover #s-circle {
+  top: -0.5px; /* Adjusted for smaller button */
+  width: 33.5px; /* Reduced width */
+  height: 8px; /* Reduced height */
+  border-width: 0;
+  background-color: #181b1c;
+  border-radius: 10px; /* Adjusted for smaller button */
+}
+
+#s-cover:hover span {
+  top: 50%;
+  left: 28px; /* Adjusted for smaller button */
+  width: 12.5px; /* Reduced width */
+  margin-top: -3.75px; /* Adjusted for smaller button */
+  transform: rotateZ(0);
+}
+
+#s-cover:hover .input-button span:before {
+  bottom: 5.5px; /* Adjusted for smaller button */
+  transform: rotateZ(52deg);
+}
+
+#s-cover:hover .input-button span:after {
+  bottom: -5.5px; /* Adjusted for smaller button */
+  transform: rotateZ(-52deg);
+}
+
+#s-cover:hover .input-button span:before,
+#s-cover:hover .input-button span:after {
+  right: -4px; /* Adjusted for smaller button */
+  width: 20px; /* Reduced width */
+  background-color: #181b1c;
 }

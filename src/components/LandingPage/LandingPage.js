@@ -36,7 +36,7 @@ const LandingPage = ({ onRouteChange }) => {
             <h2 className="landing-h2">Welcome to Face Recognition App</h2>
             <h1 className="landing-h1">{renderTitle()}</h1>
             <button
-              onClick={() => onRouteChange("faceRecognition")}
+              onClick={() => onRouteChange("secondPage")}
               className="btn-start"
             >
               START
