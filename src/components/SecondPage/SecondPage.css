@@ -1,20 +1,20 @@
 .app-page {
   width: 100%;
-  height: 100vh;
-  background-image: url("../../images/people-photo.jpg");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  max-width: 100vw; 
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 60px 20px;
+  box-sizing: border-box; 
 }
+
 * {
   box-sizing: border-box;
 }
+
 .second-page-content-box {
+
   background: linear-gradient(
     90deg,
     rgba(234, 237, 247, 0.848) 0%,
@@ -27,9 +27,9 @@
   width: 100%;
   max-width: 1160px;
   padding: 32px;
-  box-sizing: border-box;
   border-radius: 40px;
   gap: 48px;
+   box-sizing: border-box; 
 }
 
 .content-left,
@@ -37,65 +37,131 @@
   flex: 1;
   align-self: flex-start;
 }
+
 .content-right {
   padding: 24px;
   border-radius: 20px;
   background-color: #fbfbfb;
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
+
 .steps ul {
   list-style-type: none;
   padding-left: 0;
 }
+
 .steps li {
   margin-bottom: 12px;
+  display: flex;
+  align-items: center;
 }
+
 .step-style {
   text-transform: uppercase;
+  white-space: nowrap;
   color: #324458;
   font-weight: 500;
   display: inline-block;
   margin-bottom: 8px;
   padding: 8px 12px;
-  align-items: center;
   border-radius: 20px;
   background-color: #fbfbfb;
   margin-right: 10px;
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
+
 .suggestions-div {
   margin-top: 32px;
 }
+
 .suggestions-box {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
 }
+
 .suggestion {
   background-color: #324458;
   color: #fbfbfb;
   align-items: center;
   border-radius: 8px;
-  padding: 8px 12px;
+  padding: 8px 28px;
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all ease-in-out 0.3ms;
 }
+
 .suggestion:hover {
   background-color: #fbfbfb;
   color: #324458;
 }
+
+
+
+@media (min-width: 768px) and (max-width: 900px) {
+  .suggestion {
+    padding: 8px 20px;
+
+  }
+}
+@media (min-width: 620px) and (max-width: 768px) {
+  .suggestion {
+    padding: 8px 40px;
+
+  }
+}
+@media (max-width: 620px) {
+  .suggestion {
+    padding: 8px 20px;
+
+  }
+}
+@media (max-width: 400px) {
+  .suggestion {
+    padding: 8px 12px;
+
+  }
+}
 @media (max-width: 768px) {
   .second-page-content-box {
     flex-direction: column;
+    gap: 20px;
+  }
+
+  .content-left,
+  .content-right {
+    width: 100%;
+    max-width: none;
   }
 }
+
 @media (max-width: 440px) {
   .app-page {
     padding: 16px;
   }
+
   .second-page-content-box {
     padding: 24px;
-    gap: 40px;
+  }
+
+  .content-right {
+    padding: 16px;
+  }
+}
+@media (max-width: 375px) {
+  .steps li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .step-style {
+    margin-top: 12px;
+    margin-bottom: 6px; 
+  }
+
+  .steps li div, .steps li span {
+    white-space: nowrap;
   }
 }
