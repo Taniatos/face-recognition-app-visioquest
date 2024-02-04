@@ -1,15 +1,10 @@
-#cover {
-  position: relative;
-  top: 50%;
-  left: 0;
-  right: 0;
-  width: 550px;
-  padding: 35px;
-  margin: 0 auto;
+.input-form-container {
+  width: 100%; 
+  padding: 16px;
+  margin-left: 0;
   background-color: #fbfbfb;
   border-radius: 20px;
   box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
-  transform: scale(0.6);
 }
 
 .tb {
@@ -23,18 +18,18 @@
 }
 
 input[type="text"] {
-  width: 92%; /* Adjusted to take up 92% of the space */
-  height: 48px; /* Reduced height to 50% */
-  font-size: 30px; /* Adjusted font size for smaller input field */
+  width: 92%; 
+  height: 48px; 
+  font-size: 24px; 
   line-height: 1;
-  color: #181b1c;
+  color: #324458;
   font-family: Nunito;
   background-color: transparent;
   border: none;
 }
 
 input[type="text"]::placeholder {
-  color: #181b1c;
+  color: #324458;
 }
 
 #s-cover {
@@ -45,24 +40,23 @@ input[type="text"]::placeholder {
 .input-button{
   position: relative;
   display: block;
-  width: 46px; /* Reduced width */
-  height: 48px; /* Reduced height */
+  width: 46px; 
+  height: 48px; 
   cursor: pointer;
-  color: #181b1c;
-
+  color: #324458;
   background-color: transparent;
   border: none;
 }
 
 #s-circle {
   position: relative;
-  top: -4px; /* Adjusted for smaller button */
+  top: -4px; 
   left: 0;
-  width: 21px; /* Reduced width */
-  height: 21px; /* Reduced height */
+  width: 28px; 
+  height: 28px; 
   margin-top: 0;
-  border-width: 7.5px; /* Reduced border width */
-  border: 7.5px solid #181b1c;
+  border-width: 6px; 
+  border: 6px solid #324458;
   background-color: transparent;
   border-radius: 50%;
   transition: 0.5s ease all;
@@ -70,13 +64,13 @@ input[type="text"]::placeholder {
 
 .input-button span {
   position: absolute;
-  top: 34px; /* Adjusted for smaller button */
-  left: 21px; /* Adjusted for smaller button */
+  top: 34px; 
+  left: 21px; 
   display: block;
-  width: 22.5px; /* Reduced width */
-  height: 7.5px; /* Reduced height */
+  width: 24px; 
+  height: 7.5px; 
   background-color: transparent;
-  border-radius: 5px; /* Adjusted for smaller button */
+  border-radius: 2px; 
   transform: rotateZ(52deg);
   transition: 0.5s ease all;
 }
@@ -89,42 +83,42 @@ input[type="text"]::placeholder {
   right: 0;
   width: 22.5px;
   height: 8px; 
-  background-color: #181b1c;
-  border-radius: 4px; /* Adjusted for smaller button */
+  background-color: #324458;
+  border-radius: 4px; 
   transform: rotateZ(0);
   transition: 0.5s ease all;
 }
 
 #s-cover:hover #s-circle {
-  top: -0.5px; /* Adjusted for smaller button */
-  width: 33.5px; /* Reduced width */
-  height: 8px; /* Reduced height */
+  top: -0.5px; 
+  width: 34px; 
+  height: 8px; 
   border-width: 0;
-  background-color: #181b1c;
-  border-radius: 10px; /* Adjusted for smaller button */
+  background-color: #324458;
+  border-radius: 10px; 
 }
 
 #s-cover:hover span {
   top: 50%;
-  left: 28px; /* Adjusted for smaller button */
-  width: 12.5px; /* Reduced width */
-  margin-top: -3.75px; /* Adjusted for smaller button */
+  left: 28px; 
+  width: 12px; 
+  margin-top: -4px; 
   transform: rotateZ(0);
 }
 
 #s-cover:hover .input-button span:before {
-  bottom: 5.5px; /* Adjusted for smaller button */
+  bottom: 6px;
   transform: rotateZ(52deg);
 }
 
 #s-cover:hover .input-button span:after {
-  bottom: -5.5px; /* Adjusted for smaller button */
+  bottom: -6px; 
   transform: rotateZ(-52deg);
 }
 
 #s-cover:hover .input-button span:before,
 #s-cover:hover .input-button span:after {
-  right: -4px; /* Adjusted for smaller button */
-  width: 20px; /* Reduced width */
-  background-color: #181b1c;
+  right: -4px; 
+  width: 20px;
+  background-color: #324458;
 }
