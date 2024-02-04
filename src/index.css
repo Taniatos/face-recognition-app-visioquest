@@ -5,15 +5,18 @@ body {
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: aliceblue;
-  /* background: linear-gradient(
-    90deg,
-    rgba(22, 49, 60, 0.83) 0%,
-    rgba(23, 48, 101, 0.8) 93.99%
-  ); */
+background-image: url("./images/people-photo.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+html{
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
