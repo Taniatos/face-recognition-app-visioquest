@@ -4,6 +4,7 @@ import FaceRecognition from "../FaceRecognition/FaceRecognition";
 import InputForm from "../InputForm/InputForm";
 import { pat } from "../../constants/apiKeys";
 
+
 const SecondPage = () => {
   const [input, setInput] = useState("");
   const [box, setBox] = useState({});
@@ -121,16 +122,18 @@ const SecondPage = () => {
             <div className="suggestions-div">
               <h4>No time to look for URLs? These are for you:</h4>
               <div className="suggestions-box">
+                {/* ONE */}
                 <div
                   className="suggestion"
                   onClick={() =>
                     handleSuggestionClick(
-                      "https://img.freepik.com/free-photo/happy-african-american-woman-with-earphones-running-park_637285-4471.jpg?w=1380&t=st=1707010752~exp=1707011352~hmac=2d23c34ae315596fa89f9f4683f99f368f5d359eddb2e7a730877e296ae7a58d"
+                      "https://images.pexels.com/photos/20087472/pexels-photo-20087472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     )
                   }
                 >
-                  Image 1
+                  1
                 </div>
+                {/* TWO */}
                 <div
                   className="suggestion"
                   onClick={() =>
@@ -139,18 +142,20 @@ const SecondPage = () => {
                     )
                   }
                 >
-                  Image 2
+                  2
                 </div>
+                {/* THREE */}
                 <div
                   className="suggestion"
                   onClick={() =>
                     handleSuggestionClick(
-                      "https://img.freepik.com/free-photo/cool-stylish-smiling-happy-blond-woman-walking-street-with-backpack_285396-1627.jpg?w=1380&t=st=1707010696~exp=1707011296~hmac=955aeca8d3954c874e0959c13a307dff72628157cde894d5ceb9677592752958"
+                      "https://images.pexels.com/photos/17403707/pexels-photo-17403707.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     )
                   }
                 >
-                  Image 3
+                  3
                 </div>
+                {/* FOUR */}
                 <div
                   className="suggestion"
                   onClick={() =>
@@ -159,17 +164,18 @@ const SecondPage = () => {
                     )
                   }
                 >
-                  Image 4
+                  4
                 </div>
+                {/* FIVE */}
                 <div
                   className="suggestion"
                   onClick={() =>
                     handleSuggestionClick(
-                      "https://img.freepik.com/free-photo/serious-dark-skinned-student-prepares-exam-from-early-morning-writes-important-notes-from-book-into-notebook-lies-unmade-bed-own-room_273609-18697.jpg?w=1380&t=st=1707009276~exp=1707009876~hmac=9543314d6448036fd951c1841f978354c8842ab9e0f8606fc6b7b151ca0f3baa"
+                      "https://images.pexels.com/photos/19402529/pexels-photo-19402529.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     )
                   }
                 >
-                  Image 5
+                  5
                 </div>
               </div>
             </div>
