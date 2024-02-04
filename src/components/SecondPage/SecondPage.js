@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./SecondPage.css";
 import FaceRecognition from "../FaceRecognition/FaceRecognition";
 import InputForm from "../InputForm/InputForm";
@@ -8,17 +8,6 @@ const SecondPage = () => {
   const [input, setInput] = useState("");
   const [box, setBox] = useState({});
   const [isSuggestionClick, setIsSuggestionClick] = useState(false);
-
-  useEffect(() => {
-    if (input && isSuggestionClick) {
-      submitImage();
-    }
-  }, [input, isSuggestionClick]);
-
-  const onInputChange = (event) => {
-    setInput(event.target.value);
-    setIsSuggestionClick(false); 
-  };
 
   const calculateFaceLocation = (data) => {
     const clarifaiFace =
@@ -37,6 +26,7 @@ const SecondPage = () => {
   const displayFaceBox = (box) => {
     setBox(box);
   };
+
 
   const submitImage = async () => {
     const PAT = pat;
@@ -80,6 +70,20 @@ const SecondPage = () => {
     }
   };
 
+
+  const memoizedSubmitImage = useCallback(submitImage, [input]);
+
+  useEffect(() => {
+    if (input && isSuggestionClick) {
+      memoizedSubmitImage();
+    }
+  }, [input, isSuggestionClick, memoizedSubmitImage]);
+
+  const onInputChange = (event) => {
+    setInput(event.target.value);
+    setIsSuggestionClick(false); 
+  };
+
   const handleSuggestionClick = (imageUrl) => {
     setInput(imageUrl);
     setIsSuggestionClick(true); 
@@ -93,7 +97,7 @@ const SecondPage = () => {
             onInputChange={onInputChange}
             onButtonSubmit={(event) => {
               event.preventDefault();
-              submitImage();
+              memoizedSubmitImage();
             }}
           />
           <FaceRecognition imageUrl={input} box={box} />
