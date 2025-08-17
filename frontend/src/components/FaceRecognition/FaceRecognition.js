@@ -11,7 +11,7 @@ const FaceRecognition = ({ imageUrl, box }) => {
           alt=""
           className="input-image-style"
         />
-        {box && (
+        {box && box.topRow && (
           <div
             className="bounding-box"
             style={{
