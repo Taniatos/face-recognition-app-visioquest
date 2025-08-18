@@ -1,5 +1,3 @@
-
-
 .container {
   display: flex;
   justify-content: center;
@@ -18,6 +16,7 @@
   align-items: center;
   text-align: center;
   padding: 20px;
+  box-sizing: border-box;
   box-shadow: 0px 4px 30px 50px rgba(209, 230, 255, 0.15),
     0px 4px 20px 15px rgba(219, 242, 252, 0.07),
     0px 4px 10px 0px rgba(0, 0, 0, 0.1);
@@ -40,21 +39,24 @@
   background: radial-gradient(
     circle,
     rgba(234, 237, 247, 0.9) 0%,
-    rgba(223, 227, 240, 0.8883928571428571) 18%,
-    rgba(255, 255, 255, 0) 50%
+    rgba(223, 227, 240, 0.888) 30%, 
+    rgba(255, 255, 255, 0) 80%
   );
-  padding: 120px;
+  padding: 60px 80px; 
   border-radius: 8px;
   backdrop-filter: blur(4px);
+  max-width: 900px; 
+  box-sizing: border-box;
 }
 
 .landing-h1 {
-  font-weight: 200;
-  font-size: 120px;
+  font-weight: 400; 
+  font-size: 100px; 
   color: #324458;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   margin-top: 0;
   z-index: 1010;
+  line-height: 1.1; 
 }
 
 .landing-h2 {
@@ -62,6 +64,16 @@
   font-size: 20px;
   color: #181b1c;
   z-index: 1010;
+}
+
+.landing-description {
+  font-size: 18px;
+  color: #324458;
+  margin-top: -10px;
+  z-index: 1010;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .btn-start {
@@ -94,48 +106,73 @@
 
 
 
-@media only screen and (max-width: 540px) {
+/* For tablets and small desktops */
+@media only screen and (max-width: 992px) {
+  .landing-h1 {
+    font-size: 90px;
+  }
+  .content-box {
+    padding: 60px;
+  }
+}
+
+/* For smaller tablets */
+@media only screen and (max-width: 768px) {
   .landing-h1 {
     font-size: 80px;
-    font-weight: 400;
-    line-height: 100%;
-    max-width: 92%;
-    margin-left: auto;
-    margin-right: auto;
   }
-
   .landing-h2 {
     font-size: 18px;
   }
-
+  .landing-description {
+    font-size: 16px;
+  }
   .content-box {
-    max-width: 96%;
-    background: rgba(210, 227, 241, 0.3);
     padding: 40px;
+    max-width: 90%;
+    background: rgba(210, 227, 241, 0.4);
   }
 }
+
+/* For mobile phones */
+@media only screen and (max-width: 580px) {
+  .landing-h1 {
+    font-size: 70px;
+    font-weight: 400;
+    line-height: 1;
+    max-width: 100%;
+  }
+}
+
+/* For very small screens */
 @media only screen and (max-width: 390px) {
   .landing-h1 {
     font-size: 60px;
   }
   .landing-h2 {
-    font-size: 14px;
+    font-size: 16px;
   }
   .content-box {
-    max-width: 98%;
-    background: rgba(210, 227, 241, 0.3);
-    padding: 32px;
+    padding: 32px 24px;
+  }
+  .btn-start {
+    padding: 12px 32px;
+  }
+  .container button:hover {
+    padding: 12px 40px;
+    letter-spacing: 2px;
   }
 }
+
 
 @-webkit-keyframes slidein {
   from {
     background-position: bottom;
-    background-size: 4000px;
+    background-size: 3500px;
   }
   to {
     background-position: -100px 0px;
-    background-size: 2600px;
+    background-size: 2800px;
   }
 }
 
@@ -146,6 +183,6 @@
   }
   to {
     background-position: -100px 0px;
-    background-size: 2600px;
+    background-size: 2800px;
   }
 }
