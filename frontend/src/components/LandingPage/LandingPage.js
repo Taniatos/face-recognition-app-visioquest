@@ -35,6 +35,9 @@ const LandingPage = ({ onRouteChange }) => {
           <div className="content-box">
             <h2 className="landing-h2">Welcome to Face Recognition App</h2>
             <h1 className="landing-h1">{renderTitle()}</h1>
+            <p className="landing-description">
+              Unlock the power of AI to detect faces in any image, instantly.
+            </p>
             <button
               onClick={() => onRouteChange("secondPage")}
               className="btn-start"
