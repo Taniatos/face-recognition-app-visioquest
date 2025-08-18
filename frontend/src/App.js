@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
-import LandingPage from "./components/LandingPage/LandingPage";
-import SecondPage from "./components/SecondPage/SecondPage"; // Make sure this path is correct
+import LandingPage from "./pages/LandingPage/LandingPage";
+import SecondPage from "./pages/SecondPage/SecondPage"; 
 
 function App() {
   const [route, setRoute] = useState("landing");
