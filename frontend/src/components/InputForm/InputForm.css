@@ -1,10 +1,9 @@
 .input-form-container {
-  width: 100%; 
-  padding: 16px;
-  margin-left: 0;
+  width: 100%;
+  padding: 12px;
   background-color: #fbfbfb;
-  border-radius: 20px;
-  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0px 8px 15px -3px rgba(0, 0, 0, 0.08);
 }
 
 .tb {
@@ -18,107 +17,45 @@
 }
 
 input[type="text"] {
-  width: 92%; 
-  height: 48px; 
-  font-size: 24px; 
-  line-height: 1;
+  width: 100%;
+  height: 36px;
+  font-size: 15px;
   color: #324458;
-  font-family: Nunito;
+  font-family: 'Montserrat', sans-serif;
   background-color: transparent;
   border: none;
+  outline: none;
+  padding-left: 12px;
 }
 
 input[type="text"]::placeholder {
-  color: #324458;
+  color: #454c55;
 }
 
 #s-cover {
   width: 1px;
-  padding-left: 35px;
+  padding-left: 10px;
 }
 
-.input-button{
-  position: relative;
-  display: block;
-  width: 46px; 
-  height: 48px; 
+.input-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
   cursor: pointer;
+  background: none;
   color: #324458;
-  background-color: transparent;
   border: none;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
 }
 
-#s-circle {
-  position: relative;
-  top: -4px; 
-  left: 0;
-  width: 28px; 
-  height: 28px; 
-  margin-top: 0;
-  border-width: 6px; 
-  border: 6px solid #324458;
-  background-color: transparent;
-  border-radius: 50%;
-  transition: 0.5s ease all;
+.input-button .fa-search {
+  font-size: 16px;
+  transition: font-size 0.2s ease-in-out;
 }
 
-.input-button span {
-  position: absolute;
-  top: 34px; 
-  left: 21px; 
-  display: block;
-  width: 24px; 
-  height: 7.5px; 
-  background-color: transparent;
-  border-radius: 2px; 
-  transform: rotateZ(52deg);
-  transition: 0.5s ease all;
-}
-
-.input-button span:before,
-.input-button span:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 22.5px;
-  height: 8px; 
-  background-color: #324458;
-  border-radius: 4px; 
-  transform: rotateZ(0);
-  transition: 0.5s ease all;
-}
-
-#s-cover:hover #s-circle {
-  top: -0.5px; 
-  width: 34px; 
-  height: 8px; 
-  border-width: 0;
-  background-color: #324458;
-  border-radius: 10px; 
-}
-
-#s-cover:hover span {
-  top: 50%;
-  left: 28px; 
-  width: 12px; 
-  margin-top: -4px; 
-  transform: rotateZ(0);
-}
-
-#s-cover:hover .input-button span:before {
-  bottom: 6px;
-  transform: rotateZ(52deg);
-}
-
-#s-cover:hover .input-button span:after {
-  bottom: -6px; 
-  transform: rotateZ(-52deg);
-}
-
-#s-cover:hover .input-button span:before,
-#s-cover:hover .input-button span:after {
-  right: -4px; 
-  width: 20px;
-  background-color: #324458;
+.input-button:hover .fa-search {
+  font-size: 20px;
 }
