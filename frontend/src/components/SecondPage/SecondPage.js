@@ -8,14 +8,12 @@ const SecondPage = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [boxes, setBoxes] = useState([]);
 
-  // Returns an ARRAY of box calculations
   const calculateFaceLocations = (data) => {
     if (data && data.outputs && data.outputs[0]?.data.regions) {
       const image = document.getElementById("inputImage");
       const width = Number(image.width);
       const height = Number(image.height);
 
-      // Map over every region (face) found and return a box object for each
       return data.outputs[0].data.regions.map((region) => {
         const clarifaiFace = region.region_info.bounding_box;
         return {
@@ -26,7 +24,7 @@ const SecondPage = () => {
         };
       });
     }
-    return []; // Return an empty array if no faces are found
+    return [];
   };
 
   const displayFaceBoxes = (boxes) => {
@@ -34,20 +32,16 @@ const SecondPage = () => {
   };
 
   const detectFaces = (url) => {
-    console.log("Submitting URL to backend:", url);
-
-    fetch("http://localhost:3001/imageurl", {
+    fetch("https://visioquest-backend.onrender.com/imageurl", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ input: url }),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Received response from backend:", data);
         if (data && data.outputs) {
           displayFaceBoxes(calculateFaceLocations(data));
         } else {
-          console.log("No face data in response from backend.", data);
           setBoxes([]);
         }
       })
@@ -80,7 +74,6 @@ const SecondPage = () => {
             onInputChange={onInputChange}
             onButtonSubmit={onButtonSubmit}
           />
-          {/* Pass the 'boxes' array to FaceRecognition */}
           <FaceRecognition imageUrl={imageUrl} boxes={boxes} />
         </div>
         <div className="content-right">
@@ -102,7 +95,6 @@ const SecondPage = () => {
             <div className="suggestions-div">
               <h4>No time to look for URLs? These are for you:</h4>
               <div className="suggestions-box">
-                {/* Image with multiple faces */}
                 <div
                   className="suggestion"
                   onClick={() =>
