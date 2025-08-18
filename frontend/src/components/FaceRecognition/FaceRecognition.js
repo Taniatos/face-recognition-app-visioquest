@@ -1,7 +1,7 @@
 import React from "react";
 import "./FaceRecognition.css";
 
-const FaceRecognition = ({ imageUrl, box }) => {
+const FaceRecognition = ({ imageUrl, boxes }) => {
   return (
     <div className="ma">
       <div className="relative mt2 img-box">
@@ -11,8 +11,10 @@ const FaceRecognition = ({ imageUrl, box }) => {
           alt=""
           className="input-image-style"
         />
-        {box && box.topRow && (
+        {/* Map over the boxes array and render a div for each face box */}
+        {boxes.map((box, i) => (
           <div
+            key={i}
             className="bounding-box"
             style={{
               top: box.topRow,
@@ -21,7 +23,7 @@ const FaceRecognition = ({ imageUrl, box }) => {
               left: box.leftCol,
             }}
           ></div>
-        )}
+        ))}
       </div>
     </div>
   );
