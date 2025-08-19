@@ -9,7 +9,7 @@ const FaceRecognition = ({ imageUrl, boxes, isLoading }) => {
           <div className="loading-overlay">
             <div className="loader"></div>
             <p>Waking up the server, please wait...</p>
-             <p>The subsequent requests will be instant.</p>
+            <p>The subsequent requests will be instant.</p>
           </div>
         )}
         <img
