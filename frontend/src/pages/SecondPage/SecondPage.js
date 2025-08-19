@@ -7,7 +7,7 @@ const SecondPage = () => {
   const [input, setInput] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [boxes, setBoxes] = useState([]);
-  const [isLoading, setIsLoading] = useState(false); // Add loading state
+  const [isLoading, setIsLoading] = useState(false); 
 
   const calculateFaceLocations = (data) => {
     if (data && data.outputs && data.outputs[0]?.data.regions) {
