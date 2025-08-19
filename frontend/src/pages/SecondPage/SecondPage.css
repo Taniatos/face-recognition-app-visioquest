@@ -115,7 +115,7 @@
   }
 }
 
-@media (max-width: 480px) { /* Adjusted breakpoint for smaller screens */
+@media (max-width: 480px) {
   .app-page {
     padding: 20px 10px;
   }
@@ -130,8 +130,7 @@
   
   .suggestion {
     padding: 8px 20px;
-    min-width: 40px; /* Ensures buttons don't get too small */
-    flex-grow: 0; /* Stops buttons from growing too much */
+    min-width: 40px; 
   }
 }
 
@@ -148,6 +147,6 @@
   }
 
   .steps li div, .steps li span {
-    white-space: normal; /* Allow text to wrap */
+    white-space: normal; 
   }
 }
