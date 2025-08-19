@@ -26,7 +26,6 @@
   cursor: pointer;
   z-index: 1;
 }
-/* Add these new styles to the end of the file */
 
 .loading-overlay {
   position: absolute;
@@ -53,6 +52,11 @@
   height: 40px;
   animation: spin 1s linear infinite;
   margin-bottom: 15px;
+}
+.loading-overlay p {
+  text-align: center;
+  margin: 4px auto;
+  max-width: 95%;
 }
 
 @keyframes spin {
