@@ -1,45 +1,86 @@
-# VisioQuest Face Recognition App
+# VisioQuest
 
-Website: [VisioQuest](https://face-recognition-visioquest.netlify.app).
+AI-powered face detection web app — detect human faces in any image, instantly.
 
-VisioQuest is a full-stack web application that uses artificial intelligence to detect human faces in images. Users can submit an image URL, and the application will process the image, identify any faces, and draw bounding boxes around each one.
+**Live:** [face-recognition-visioquest.netlify.app](https://face-recognition-visioquest.netlify.app)
+
+## What It Does
+
+- **Face Detection** — Submit an image URL or upload a photo to detect all faces
+- **Client-Side AI** — Uses MediaPipe Face Detection running entirely in the browser
+- **File Upload** — Drag-and-drop or pick a local image file
+- **Sample Images** — Quick-test with built-in image suggestions
+- **Responsive UI** — Clean interface with particle background, works on desktop and mobile
+- **CORS Proxy Fallback** — Backend proxies images when cross-origin access is blocked
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React 18 (CRA), JavaScript (ES6+), CSS3 |
+| Backend | Node.js, Express.js (CORS image proxy) |
+| Face Detection | MediaPipe Face Detection (@mediapipe/tasks-vision) |
+| UI | particles-bg, react-parallax-tilt, Font Awesome |
+| Deployment | Netlify (frontend), Render (backend) |
+
+## Project Structure
+
+```
+face-recognition-app-visioquest/
+├── frontend/                # React 18 (CRA, JavaScript)
+│   ├── public/
+│   └── src/
+│       ├── App.js
+│       ├── services/        # Face detection + image proxy services
+│       └── pages/
+│           ├── LandingPage/
+│           ├── SecondPage/
+│           ├── InputForm/
+│           └── FaceRecognition/
+└── backend/                 # Node.js + Express
+    └── server.js            # CORS image proxy (no API keys needed)
+```
+
+## Getting Started
+
+### Prerequisites
+- Node.js 18+
+
+### Setup
+
+```bash
+# Frontend
+cd frontend && npm install && npm start
+# → localhost:3000
+
+# Backend (in another terminal — only needed for CORS-blocked images)
+cd backend && npm install && node server.js
+# → localhost:3001
+```
 
 ## How It Works
 
-This application uses a secure client-server architecture. The React frontend captures the user's image URL and sends it to a dedicated Node.js backend. This backend server acts as a secure proxy, adding the confidential Clarifai API key before forwarding the request to the Clarifai API for face detection. This ensures that the API key is never exposed on the client-side, following security best practices.
+1. **Enter an image** — Paste a URL, upload a file, or pick a sample image
+2. **MediaPipe runs in-browser** — The face detection model loads once and processes images client-side (no API keys needed)
+3. **Bounding boxes rendered** — Detected faces are highlighted with positioned overlays
+4. **CORS fallback** — If the browser can't access an image's pixels due to cross-origin restrictions, the backend proxies it as a base64 data URL
 
-## Key Features
+## Features
 
-- **Multiple Face Detection:** Utilizes the powerful Clarifai AI model to accurately identify and display bounding boxes for all human faces in an image.
-- **Secure Backend:** A Node.js and Express server proxies API requests to protect the Clarifai API key.
-- **Responsive Design:** A clean and modern user interface that works seamlessly on desktop and mobile devices.
-- **Image Suggestions:** Includes sample images for users to quickly test the application's functionality.
-
-## Technology Stack
-
-### Frontend
-
-- React: A JavaScript library for building user interfaces, utilizing functional components and hooks (`useState`, `useEffect`, `useCallback`).
-- JavaScript (ES6+): Modern JavaScript for application logic.
-- HTML5 & CSS3: For structuring and styling the application, including responsive design with media queries.
-- Font Awesome: For clean and scalable icons.
-
-### Backend
-
-- Node.js: A JavaScript runtime for building the server-side proxy.
-- Express.js: A minimal and flexible Node.js web application framework.
-- CORS: Middleware for enabling Cross-Origin Resource Sharing.
-- Dotenv: For managing secret environment variables (API keys).
-
-### API
-
-- Clarifai API: A third-party AI service used for the core face detection functionality.
+| Feature | Details |
+|---------|---------|
+| Face detection | MediaPipe blaze_face_short_range model, runs client-side via WASM |
+| URL input | Paste any image URL; CORS-safe images detected directly |
+| File upload | File picker + drag-and-drop on the input area |
+| Multiple faces | All detected faces get individual bounding boxes |
+| Sample suggestions | 5 built-in image URLs for quick testing |
+| Loading states | Spinner during image load + model initialization notice |
+| Error handling | User-friendly messages for invalid URLs, failed loads, no faces found |
+| Responsive | Adapts to desktop, tablet, and mobile viewports |
 
 ## Deployment
 
-This application is deployed with a standard full-stack architecture:
+- **Frontend:** Netlify — auto-deploys from main branch
+- **Backend:** Render free tier — only used for CORS image proxying; server spins down after inactivity
 
-- The frontend is hosted on Netlify.
-- The backend is hosted as a web service on Render.
 
-**Note on Backend Hosting:** The backend is deployed on Render's free tier. As a result, the server will "spin down" after a period of inactivity. The first request made after the server has been idle may take up to a minute to process as the service starts back up. Subsequent requests will be fast.

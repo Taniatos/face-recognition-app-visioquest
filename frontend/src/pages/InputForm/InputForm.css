@@ -4,6 +4,8 @@
   background-color: #fbfbfb;
   border-radius: 12px;
   box-shadow: 0px 8px 15px -3px rgba(0, 0, 0, 0.08);
+  position: relative;
+  transition: border-color 0.2s ease;
 }
 
 .tb {
@@ -58,4 +60,37 @@ input[type="text"]::placeholder {
 
 .input-button:hover .fa-search {
   font-size: 20px;
+}
+
+/* Upload button */
+#upload-cover {
+  width: 1px;
+  padding-left: 6px;
+}
+
+/* Drag-and-drop styles */
+.input-form-container.drag-over {
+  border: 2px dashed #324458;
+  background-color: rgba(50, 68, 88, 0.05);
+}
+
+.drop-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6;
+  border-radius: 12px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.drop-overlay p {
+  color: #324458;
+  font-weight: 600;
+  font-size: 14px;
 }

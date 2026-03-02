@@ -1,57 +1,117 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./SecondPage.css";
 import FaceRecognition from "../FaceRecognition/FaceRecognition";
 import InputForm from "../InputForm/InputForm";
+import {
+  initFaceDetector,
+  detectFaces,
+} from "../../services/faceDetectionService";
+import {
+  loadImageWithCors,
+  fetchImageViaProxy,
+  fileToDataUrl,
+} from "../../services/imageProxyService";
 
 const SecondPage = () => {
   const [input, setInput] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [boxes, setBoxes] = useState([]);
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
+  const [modelLoading, setModelLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const calculateFaceLocations = (data) => {
-    if (data && data.outputs && data.outputs[0]?.data.regions) {
-      const image = document.getElementById("inputImage");
-      const width = Number(image.width);
-      const height = Number(image.height);
+  const imageRef = useRef(null);
 
-      return data.outputs[0].data.regions.map((region) => {
-        const clarifaiFace = region.region_info.bounding_box;
-        return {
-          leftCol: clarifaiFace.left_col * width,
-          topRow: clarifaiFace.top_row * height,
-          rightCol: width - clarifaiFace.right_col * width,
-          bottomRow: height - clarifaiFace.bottom_row * height,
-        };
-      });
-    }
-    return [];
-  };
-
-  const displayFaceBoxes = (boxes) => {
-    setBoxes(boxes);
-  };
-
-  const detectFaces = (url) => {
-    setIsLoading(true); // Set loading to true before the fetch
-    fetch("https://visioquest-backend.onrender.com/imageurl", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ input: url }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setIsLoading(false); // Set loading to false on success
-        if (data && data.outputs) {
-          displayFaceBoxes(calculateFaceLocations(data));
-        } else {
-          setBoxes([]);
-        }
-      })
+  // Pre-initialize MediaPipe on mount
+  useEffect(() => {
+    initFaceDetector()
+      .then(() => setModelLoading(false))
       .catch((err) => {
-        setIsLoading(false); // Also set loading to false on error
-        console.error("Error fetching from proxy server:", err);
+        console.error("Failed to initialize face detector:", err);
+        setModelLoading(false);
+        setError("Failed to load face detection model. Please refresh the page.");
       });
+  }, []);
+
+  const runDetection = useCallback(async (imgElement) => {
+    try {
+      const faceBoxes = await detectFaces(imgElement);
+      setBoxes(faceBoxes);
+      if (faceBoxes.length === 0) {
+        setError("No faces detected in this image.");
+      }
+    } catch (err) {
+      console.error("Detection error:", err);
+      setBoxes([]);
+      setError("Face detection failed. Please try a different image.");
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const handleImageLoad = useCallback(() => {
+    const imgElement = imageRef.current;
+    if (imgElement && imgElement.naturalWidth > 0 && isLoading) {
+      runDetection(imgElement);
+    }
+  }, [runDetection, isLoading]);
+
+  const handleImageError = useCallback(() => {
+    if (imageUrl && !imageUrl.startsWith("data:")) {
+      fetchImageViaProxy(imageUrl)
+        .then((dataUrl) => setImageUrl(dataUrl))
+        .catch(() => {
+          setIsLoading(false);
+          setError("Could not load this image.");
+        });
+    } else {
+      setIsLoading(false);
+      setError("Could not load this image.");
+    }
+  }, [imageUrl]);
+
+  const processUrl = async (url) => {
+    setIsLoading(true);
+    setBoxes([]);
+    setError("");
+
+    if (url.startsWith("data:")) {
+      setImageUrl(url);
+      return;
+    }
+
+    // Check CORS first, then set imageUrl to avoid race conditions
+    const corsImage = await loadImageWithCors(url);
+    if (corsImage) {
+      setImageUrl(url);
+    } else {
+      try {
+        const dataUrl = await fetchImageViaProxy(url);
+        setImageUrl(dataUrl);
+      } catch (err) {
+        console.error("Proxy fallback failed:", err);
+        setIsLoading(false);
+        setError(
+          "Could not load this image. The URL may be invalid or the server is blocking access."
+        );
+      }
+    }
+  };
+
+  const processFile = async (file) => {
+    setIsLoading(true);
+    setBoxes([]);
+    setError("");
+    setInput("");
+
+    try {
+      const dataUrl = await fileToDataUrl(file);
+      setImageUrl(dataUrl);
+    } catch (err) {
+      console.error("File read error:", err);
+      setIsLoading(false);
+      setError("Could not read the selected file.");
+    }
   };
 
   const onInputChange = (event) => {
@@ -60,14 +120,22 @@ const SecondPage = () => {
 
   const onButtonSubmit = (event) => {
     event.preventDefault();
-    setImageUrl(input);
-    detectFaces(input);
+    if (input.trim()) {
+      processUrl(input.trim());
+    }
   };
 
   const handleSuggestionClick = (suggestionUrl) => {
     setInput(suggestionUrl);
-    setImageUrl(suggestionUrl);
-    detectFaces(suggestionUrl);
+    processUrl(suggestionUrl);
+  };
+
+  const onFileSelect = (file) => {
+    if (file && file.type.startsWith("image/")) {
+      processFile(file);
+    } else {
+      setError("Please select a valid image file (JPEG, PNG, WebP, etc.).");
+    }
   };
 
   return (
@@ -77,20 +145,35 @@ const SecondPage = () => {
           <InputForm
             onInputChange={onInputChange}
             onButtonSubmit={onButtonSubmit}
+            onFileSelect={onFileSelect}
+            inputValue={input}
           />
-          <FaceRecognition imageUrl={imageUrl} boxes={boxes} isLoading={isLoading} />
+          {modelLoading && (
+            <div className="model-loading-notice">
+              Loading face detection model...
+            </div>
+          )}
+          {error && <div className="error-notice">{error}</div>}
+          <FaceRecognition
+            imageUrl={imageUrl}
+            boxes={boxes}
+            isLoading={isLoading}
+            imageRef={imageRef}
+            onImageLoad={handleImageLoad}
+            onImageError={handleImageError}
+          />
         </div>
         <div className="content-right">
           <h3>To try out VisioQuest, follow these simple steps:</h3>
           <div className="steps">
             <ul>
               <li>
-                <div className="step-style">Step 1</div> Copy image address on
-                any website
+                <div className="step-style">Step 1</div> Paste an image URL or
+                upload a photo
               </li>
               <li>
-                <span className="step-style">Step 2</span> Paste it into the
-                search field and press the button
+                <span className="step-style">Step 2</span> Press the search
+                button
               </li>
               <li>
                 <span className="step-style">Step 3</span> Enjoy!
@@ -103,7 +186,7 @@ const SecondPage = () => {
                   className="suggestion"
                   onClick={() =>
                     handleSuggestionClick(
-                      "https://samples.clarifai.com/face-det.jpg"
+                      "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=800"
                     )
                   }
                 >
@@ -113,7 +196,7 @@ const SecondPage = () => {
                   className="suggestion"
                   onClick={() =>
                     handleSuggestionClick(
-                      "https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg"
+                      "https://images.pexels.com/photos/2198186/pexels-photo-2198186.jpeg"
                     )
                   }
                 >
@@ -123,7 +206,7 @@ const SecondPage = () => {
                   className="suggestion"
                   onClick={() =>
                     handleSuggestionClick(
-                      "https://images.pexels.com/photos/17403707/pexels-photo-17403707.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                      "https://images.pexels.com/photos/2833394/pexels-photo-2833394.jpeg"
                     )
                   }
                 >

@@ -1,7 +1,7 @@
 import React from "react";
 import "./FaceRecognition.css";
 
-const FaceRecognition = ({ imageUrl, boxes, isLoading }) => {
+const FaceRecognition = ({ imageUrl, boxes, isLoading, imageRef, onImageLoad, onImageError }) => {
   return (
     <div className="ma">
       <div className="relative mt2 img-box">
@@ -11,12 +11,17 @@ const FaceRecognition = ({ imageUrl, boxes, isLoading }) => {
             <p>Summoning pixels from the void...</p>
           </div>
         )}
-        <img
-          id="inputImage"
-          src={imageUrl}
-          alt=""
-          className="input-image-style"
-        />
+        {imageUrl && (
+          <img
+            ref={imageRef}
+            crossOrigin="anonymous"
+            src={imageUrl}
+            alt="Face detection target"
+            className="input-image-style"
+            onLoad={onImageLoad}
+            onError={onImageError}
+          />
+        )}
         {boxes.map((box, i) => (
           <div
             key={i}
